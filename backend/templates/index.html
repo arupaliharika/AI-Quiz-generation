@@ -23,9 +23,9 @@
       </div>
       <nav class="nav" id="main-nav">
         <a class="active" data-page="auth" href="#auth">Auth</a>
-        <a data-page="dashboard" href="#dashboard">Dashboard</a>
         <a data-page="setup" href="#setup">Setup</a>
         <a data-page="quiz" href="#quiz">Quiz</a>
+        <a data-page="dashboard" href="#dashboard">Dashboard</a>
         <a data-page="analysis" href="#analysis">Analysis</a>
       </nav>
       <div class="auth-controls">
@@ -51,7 +51,6 @@
             </div>
             <input id="auth-email" placeholder="Email" />
             <input id="auth-password" placeholder="Password" type="password" />
-            <input id="auth-subject" placeholder="Subject (optional)" />
             <button class="solid wide" id="submit-auth">Continue</button>
             <div class="status" id="auth-status"></div>
           </div>
@@ -100,6 +99,7 @@
             <div class="bar"></div>
           </div>
           <div class="panel-note">Adaptive routing based on performance.</div>
+          <button class="solid" id="next-analysis">Next -> Analysis</button>
         </div>
         <section class="feature-grid">
           <div class="feature-card">

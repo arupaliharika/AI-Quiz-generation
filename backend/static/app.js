@@ -15,7 +15,6 @@ const qs = (id) => document.getElementById(id);
 const authStatus = qs("auth-status");
 const authEmail = qs("auth-email");
 const authPassword = qs("auth-password");
-const authSubject = qs("auth-subject");
 let isRegister = false;
 
 const difficultyPill = qs("difficulty-pill");
@@ -35,6 +34,7 @@ const answerStatus = qs("answer-status");
 const answerFeedback = qs("answer-feedback");
 const quizTrackFill = qs("quiz-track-fill");
 const viewResultsBtn = qs("view-results");
+const nextAnalysisBtn = qs("next-analysis");
 const logoutBtn = qs("logout-btn");
 const openAuthBtn = qs("open-auth");
 const openRegisterBtn = qs("open-register");
@@ -241,7 +241,6 @@ document.getElementById("submit-auth").onclick = async () => {
   try {
     const payload = { email, password };
     if (isRegister) {
-      payload.subject = authSubject.value.trim() || "General";
       payload.difficulty_pref = "medium";
     }
     const data = await api(isRegister ? "/api/auth/register" : "/api/auth/login", {
@@ -252,7 +251,7 @@ document.getElementById("submit-auth").onclick = async () => {
     state.user = data.user;
     setStatus(qs("content-status"), `Welcome, ${state.user.email}.`);
     setAuthUI(true);
-    showPage("dashboard");
+    showPage("setup");
   } catch (err) {
     setStatus(authStatus, err.message, "error");
   }
@@ -474,6 +473,13 @@ if (logoutBtn) {
 
 if (viewResultsBtn) {
   viewResultsBtn.onclick = () => {
+    updateSummary();
+    showPage("dashboard");
+  };
+}
+
+if (nextAnalysisBtn) {
+  nextAnalysisBtn.onclick = () => {
     updateSummary();
     showPage("analysis");
   };
