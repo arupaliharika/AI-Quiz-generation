@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Adaptive Quiz & Question Generator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
+
+    <header class="topbar">
+      <div class="brand">
+        <span class="logo">SQ</span>
+        <span class="brand-name">SmartQuizzer</span>
+      </div>
+      <nav class="nav" id="main-nav">
+        <a class="active" data-page="auth" href="#auth">Auth</a>
+        <a data-page="dashboard" href="#dashboard">Dashboard</a>
+        <a data-page="setup" href="#setup">Setup</a>
+        <a data-page="quiz" href="#quiz">Quiz</a>
+        <a data-page="analysis" href="#analysis">Analysis</a>
+      </nav>
+      <div class="auth-controls">
+        <button class="ghost" id="open-auth">Log In</button>
+        <button class="solid" id="open-register">New Quiz -></button>
+        <button class="ghost hidden" id="logout-btn">Log Out</button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="page active" id="page-auth">
+        <div class="auth-shell">
+          <div class="auth-panel">
+            <span class="eyebrow">Welcome</span>
+            <h1>Login or create your account</h1>
+            <p>
+              Keep your learning history and get adaptive difficulty tailored to
+              your performance.
+            </p>
+            <div class="auth-toggle">
+              <button class="pill active" id="auth-login-tab">Login</button>
+              <button class="pill" id="auth-signup-tab">Sign up</button>
+            </div>
+            <input id="auth-email" placeholder="Email" />
+            <input id="auth-password" placeholder="Password" type="password" />
+            <input id="auth-subject" placeholder="Subject (optional)" />
+            <button class="solid wide" id="submit-auth">Continue</button>
+            <div class="status" id="auth-status"></div>
+          </div>
+          <div class="auth-side">
+            <h2>Turn any text into a quiz</h2>
+            <p>
+              Upload a PDF, pick question types, and get instant feedback with
+              explanations from your content.
+            </p>
+            <div class="stat-grid">
+              <div>
+                <h3>3+</h3>
+                <span>Question styles</span>
+              </div>
+              <div>
+                <h3>Adaptive</h3>
+                <span>Difficulty routing</span>
+              </div>
+              <div>
+                <h3>Live</h3>
+                <span>Performance insights</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="page" id="page-dashboard">
+        <div class="hero-panel">
+          <div class="panel-title">Dashboard</div>
+          <div class="snapshot">
+            <div>
+              <small>Difficulty</small>
+              <strong id="difficulty-pill">Medium</strong>
+            </div>
+            <div>
+              <small>Accuracy</small>
+              <strong id="accuracy-pill">--</strong>
+            </div>
+            <div>
+              <small>Answered</small>
+              <strong id="attempts-pill">--</strong>
+            </div>
+          </div>
+          <div class="progress">
+            <div class="bar"></div>
+          </div>
+          <div class="panel-note">Adaptive routing based on performance.</div>
+        </div>
+        <section class="feature-grid">
+          <div class="feature-card">
+            <div class="icon">Study Hub</div>
+            <h3>Study Hub</h3>
+            <p>Upload docs, extract clean text, and build summaries fast.</p>
+          </div>
+          <div class="feature-card">
+            <div class="icon">Quiz Arena</div>
+            <h3>Quiz Arena</h3>
+            <p>Adaptive MCQ and fill-in questions with instant feedback.</p>
+          </div>
+          <div class="feature-card">
+            <div class="icon">Adaptive</div>
+            <h3>Adaptive Engine</h3>
+            <p>Difficulty adjusts automatically as your accuracy improves.</p>
+          </div>
+          <div class="feature-card">
+            <div class="icon">Analytics</div>
+            <h3>Analytics</h3>
+            <p>Track scores, difficulty progression, and sessions.</p>
+          </div>
+        </section>
+      </section>
+
+      <section class="page" id="page-setup">
+        <section class="grid">
+          <div class="card" id="study-hub">
+            <h3>Step 1 - Study Hub</h3>
+            <p>Upload material and generate AI-powered study aids.</p>
+            <div class="file-row">
+              <label class="file-label" for="content-file">Upload file</label>
+              <input id="content-file" type="file" accept=".txt,.md,.pdf" />
+            </div>
+            <small class="hint"
+              >Tip: PDF upload needs text-based PDFs. For images, paste text
+              instead.</small
+            >
+            <input id="content-title" placeholder="Title (e.g., Photosynthesis)" />
+            <textarea
+              id="content-text"
+              rows="8"
+              placeholder="Paste your learning content here..."
+            ></textarea>
+            <button class="solid" id="save-content">Save Content</button>
+            <div class="status" id="content-status"></div>
+          </div>
+
+          <div class="card" id="setup-quiz">
+            <h3>Step 2 - Quiz Setup</h3>
+            <p>Select difficulty and question types.</p>
+            <div class="pill-group" id="type-pills">
+              <button data-type="mcq" class="pill active">MCQ</button>
+              <button data-type="fill_blank" class="pill active">
+                Fill in the blank
+              </button>
+              <button data-type="true_false" class="pill active">True/False</button>
+            </div>
+            <div class="selectors">
+              <select id="difficulty-select">
+                <option value="">Auto (Adaptive)</option>
+                <option value="easy">Easy</option>
+                <option value="medium" selected>Medium</option>
+                <option value="hard">Hard</option>
+              </select>
+              <select id="count-select">
+                <option value="5" selected>5 questions</option>
+                <option value="10">10 questions</option>
+                <option value="20">20 questions</option>
+              </select>
+            </div>
+            <button class="solid" id="generate-quiz">Generate Quiz</button>
+            <div class="status" id="quiz-status"></div>
+          </div>
+        </section>
+      </section>
+
+      <section class="page" id="page-quiz">
+        <div class="quiz-dark">
+          <div class="quiz-card dark">
+            <div class="quiz-header">
+              <h3>Quiz Arena</h3>
+              <span id="quiz-progress">0 / 0</span>
+            </div>
+            <div class="quiz-track">
+              <div class="quiz-track-fill" id="quiz-track-fill"></div>
+            </div>
+            <div class="question" id="question-text">No questions yet.</div>
+            <div class="options" id="options"></div>
+            <div class="quiz-actions">
+              <button class="ghost" id="skip-question">Skip</button>
+              <button class="solid" id="submit-answer">Submit</button>
+            </div>
+            <button class="solid wide hidden" id="view-results">View Results</button>
+            <div class="status" id="answer-status"></div>
+            <div class="feedback" id="answer-feedback"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="page" id="page-analysis">
+        <section class="card summary">
+          <div>
+            <h3>Analytics Dashboard</h3>
+            <p>Track learning progress with adaptive scoring and session history.</p>
+          </div>
+          <div class="summary-grid">
+            <div>
+              <h4 id="summary-score">0%</h4>
+              <span>Accuracy</span>
+            </div>
+            <div>
+              <h4 id="summary-correct">0</h4>
+              <span>Correct</span>
+            </div>
+            <div>
+              <h4 id="summary-total">0</h4>
+              <span>Total answered</span>
+            </div>
+            <div>
+              <h4 id="difficulty-pill-summary">Medium</h4>
+              <span>Current Level</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="card admin">
+          <div>
+            <h3>Admin overview</h3>
+            <p>Monitor platform usage and content health.</p>
+          </div>
+          <div class="admin-grid" id="admin-grid">
+            <div>
+              <h4>--</h4>
+              <span>Users</span>
+            </div>
+            <div>
+              <h4>--</h4>
+              <span>Content items</span>
+            </div>
+            <div>
+              <h4>--</h4>
+              <span>Questions</span>
+            </div>
+            <div>
+              <h4>--</h4>
+              <span>Attempts</span>
+            </div>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>

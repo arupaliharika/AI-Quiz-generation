@@ -1,0 +1,203 @@
+
+
+--- Page 1 ---
+ 
+Adaptive Quiz & Question Generator  
+1. Project Title: Adaptive Quiz & Question Generator   
+ 
+ 
+2. Project Statement:  
+ 
+Learning is not one -size-fits-all. Students and self -learners often struggle to find quizzes that 
+align with their current understanding or preferred learning style. Existing quiz tools offer 
+static, generic questions that do not adapt to individual perfor mance or difficulty preferences.  
+This open -source project addresses the need for personalized, adaptive assessments  by 
+generating dynamic quizzes from any educational content (e.g., Wikipedia articles, open 
+textbooks, course material). The system allows u sers to select difficulty levels and question 
+types (MCQ, fill -in-the-blank, short answer) and adapts future questions based on performance 
+history. It also aims to support multiple languages and knowledge domains.  
+  
+3. Outcomes:  
+• Upload or fetch content fro m educational sources.  
+• Dynamically generate diverse question types using NLP.  
+• Personalized quizzes based on performance history.  
+• Difficulty -level filtering and adaptive scoring system.  
+• Admin interface to curate and manage content/question rules.  
+• Option for multilingual question generation.  
+• REST API & web interface for testing and public access.  
+• Dockized deployment ready for cloud hosting.  
+  
+ 
+ 
+ 
+ 
+
+
+--- Page 2 ---
+ 
+4. Modules to be Implemented:  
+Module 1: User & Profile Management  
+• User registration, login (email/pass word + OAuth)  
+• Profile: subjects of interest, difficulty level, performance history  
+Module 2: Content Ingestion & Parsing  
+• Uploading or fetching learning material (PDF, URLs, or pasted text)  
+• NLP -based cleaning and segmentation of text into knowledge chun ks  
+Module 3: Question Generator Engine  
+• Transformer -based or rule -based generation of:  
+ MCQs  
+ Fill-in-the-blank  
+• True/False  
+• Short answers  
+• Support for Bloom’s taxonomy -based difficulty levels  
+Module 4: Adaptive Learning Engine  
+• Track performance and update the user's difficulty profile  
+• Recommend question types based on user interaction  
+ Module 5: Web Interface + Quiz UI  
+• Clean, responsive quiz interface with result summary  
+• Adaptive questioning logic based on current user state  
+Module 6: Admin Dashboard & Feedback  
+• Question moderation, user analytics, and flagging inappropriate outputs  
+• Feedback collection for individual questions  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+--- Page 3 ---
+ 
+5. Week -wise Module Implementation Plan  
+ 
+Milestone 1: Weeks 1 –3 — User & Profile System + Content Up load  
+Goals:   
+• Secure login & registration (JWT, OAuth)  
+• User profile with preferred difficulty, subject, and question type  
+• Content upload module (text, PDF, or URL)  
+Tools:  Flask + JWT, SQLite/PostgreSQL, React (for frontend), PDFMiner/Scrapy  
+ 
+Deliverabl es:  
+• Functional login/signup  
+• Profile editor UI  
+• Sample input text loaded & parsed into chunks  
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+--- Page 4 ---
+ 
+Milestone 2: Weeks 4 –5 — Core Quiz Generator Engine  
+Goals:   
+• Generate questions (MCQ, fill -in-the-blank, True/False) from text  
+• Categorize by difficulty using transformer -based models (e.g., T5, BERT) 
+Tools:  Hugging Face Transformers, spaCy, sentence -transformers  
+Deliverables:   
+• Working question generator for uploaded material  
+• At least 3 question types with correct/incorrect distr actors  
+• Auto -label questions by difficulty (based on content complexity)  
+  
+ 
+ 
+ 
+ 
+
+
+--- Page 5 ---
+ 
+Milestone 3: Weeks 6 –7 — Adaptive Engine + Quiz Interface  
+Goals:   
+• Track user performance & adapt future quizzes  
+• Quiz UI with live scoring, progress tracking, and question routing Tools:  
+React/Next.js frontend, Python backend API, pandas (performance tracking)  
+Deliverables:   
+• Quiz UI linked with the user model  
+• Adaptation algorithm using accuracy, response time  
+• Reco mmendations for next quiz session  
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+--- Page 6 ---
+ 
+Milestone 4: Week 8 — Admin Panel + Deployment + Documentation 
+Goals:   
+• Admin dashboard to view/manage content, review flagged questions  
+• Collect feedback on questions  
+• Dockize the project and deploy  
+Tools:  Flask -admin/Dash, Docker, Streamlet Cloud/Hugging Face Spaces  
+ 
+Deliverables:   
+• Admin dashboard with content moderation  
+• Deployment on a cloud platform  
+• Complete documentation & demo presentation  
+ 
+  
+ 
+ 
+
+
+--- Page 7 ---
+ 
+6. Evaluation Criteria  
+Milestone Success Criteria  
+ Week 3  User registration, profile customization, and content upload functionality  
+ Week 5  At least 3 question types generated from uploaded  text; difficulty -level tagging.  
+ Week 7  Adaptive quiz UI working; performance -based question adjustment working  
+ Week 8  Admin panel ready; deployment complete; fi nal documentation delivered.  
+ 
+7.Flow Diagram:  
+      
+
+
+--- Page 8 ---
+ 
+ 
+8.Architecture Diagram:   
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ 
+ 
+
+
+--- Page 9 ---
+ 
+9.Schema Diagram   
+ 
+ 
+  
+  
